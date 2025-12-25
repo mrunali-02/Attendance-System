@@ -11,6 +11,8 @@ import Reports from './pages/Reports';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
 
+import StudentSettings from './pages/StudentSettings';
+
 function App() {
   React.useEffect(() => {
     // Apply theme on initial load
@@ -39,6 +41,7 @@ function App() {
         <Route path="/student/mark" element={<StudentDashboard />} />
         <Route path="/student/history" element={<StudentHistory />} />
         <Route path="/student/profile" element={<Profile />} />
+        <Route path="/student/settings" element={<StudentSettings />} />
 
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
 

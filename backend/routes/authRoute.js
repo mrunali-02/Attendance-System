@@ -22,7 +22,7 @@ router.post('/login', async (req, res) => {
         }
 
         const token = jwt.sign(
-            { id: user.id, role: user.role, name: user.name },
+            { id: user.id, role: user.role, name: user.name, token_version: user.token_version },
             process.env.JWT_SECRET || 'secret',
             { expiresIn: '1d' }
         );
@@ -62,6 +62,20 @@ router.put('/update-password', async (req, res) => {
     } catch (error) {
         console.error('Password update error:', error);
         res.status(500).json({ error: 'Failed to update password' });
+    }
+});
+
+
+
+// Logout All Devices
+router.post('/logout-all', async (req, res) => {
+    const { userId } = req.body;
+    const db = await initDB();
+    try {
+        await db.run("UPDATE users SET token_version = token_version + 1 WHERE id = ?", [userId]);
+        res.json({ message: 'Logged out from all devices' });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to logout from all devices' });
     }
 });
 

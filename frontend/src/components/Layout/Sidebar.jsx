@@ -27,7 +27,7 @@ const Sidebar = ({ role = 'teacher' }) => {
     const studentLinks = [
         { icon: CheckCircle, label: 'Mark Attendance', path: '/student/mark' },
         { icon: ClipboardList, label: 'History', path: '/student/history' },
-        { icon: UserCircle, label: 'Profile', path: '/student/profile' },
+        { icon: Settings, label: 'Settings', path: '/student/settings' },
     ];
 
     const links = role === 'teacher' ? teacherLinks : studentLinks;

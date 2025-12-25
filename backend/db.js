@@ -89,6 +89,32 @@ async function initDB() {
           )
         `);
 
+      await connection.query(`
+          CREATE TABLE IF NOT EXISTS student_settings (
+            user_id INT PRIMARY KEY,
+            theme VARCHAR(20) DEFAULT 'system',
+            text_size VARCHAR(10) DEFAULT 'medium',
+            notifications_start BOOLEAN DEFAULT 1,
+            notifications_end BOOLEAN DEFAULT 1,
+            show_profile_photo BOOLEAN DEFAULT 1,
+            attendance_threshold INT DEFAULT 75,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+          )
+        `);
+
+      await connection.query(`
+          CREATE TABLE IF NOT EXISTS support_requests (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            user_id INT NOT NULL,
+            type VARCHAR(50) NOT NULL,
+            description TEXT NOT NULL,
+            status ENUM('open', 'resolved', 'closed') DEFAULT 'open',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+          )
+        `);
+
       // Check if admin user exists, if not create one
       const [rows] = await connection.query("SELECT * FROM users WHERE email = ?", ['admin@college.edu']);
       if (rows.length === 0) {
