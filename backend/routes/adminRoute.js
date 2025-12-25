@@ -24,7 +24,7 @@ router.post('/create-teacher', isAdmin, async (req, res) => {
         // Check if email already exists
         const existingUser = await db.get("SELECT * FROM users WHERE email = ?", [email]);
         if (existingUser) {
-            return res.status(400).json({ error: 'Email already registered' });
+            return res.status(400).json({ error: `Email already registered (${existingUser.email})` });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -64,7 +64,7 @@ router.post('/create-student', isAdmin, async (req, res) => {
         // Check if email already exists
         const existingUser = await db.get("SELECT * FROM users WHERE email = ?", [email]);
         if (existingUser) {
-            return res.status(400).json({ error: 'Email already registered' });
+            return res.status(400).json({ error: `Email already registered (${existingUser.email})` });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);

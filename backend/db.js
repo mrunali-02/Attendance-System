@@ -80,6 +80,15 @@ async function initDB() {
           )
         `);
 
+      await connection.query(`
+          CREATE TABLE IF NOT EXISTS teachers (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            user_id INT NOT NULL,
+            branch VARCHAR(100),
+            FOREIGN KEY (user_id) REFERENCES users(id)
+          )
+        `);
+
       // Check if admin user exists, if not create one
       const [rows] = await connection.query("SELECT * FROM users WHERE email = ?", ['admin@college.edu']);
       if (rows.length === 0) {

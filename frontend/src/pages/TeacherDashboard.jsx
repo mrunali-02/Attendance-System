@@ -73,7 +73,6 @@ const TeacherDashboard = () => {
                         lat: latitude,
                         lng: longitude,
                         radius: 50, // configured radius
-                        radius: 50, // configured radius
                         durationMinutes: config.minuteDuration ? parseInt(config.minuteDuration) : 5, // Use config or default
                         metadata: JSON.stringify(config)
                     })
