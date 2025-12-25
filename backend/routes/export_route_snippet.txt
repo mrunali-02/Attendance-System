@@ -1,0 +1,49 @@
+// Add this route to sessionRoute.js for exporting attendance records
+
+// Export attendance records for a session as CSV
+router.get('/:id/export', async (req, res) => {
+  const { id } = req.params;
+  const db = await initDB();
+
+  try {
+    const session = await db.get("SELECT * FROM sessions WHERE id = ?", [id]);
+    
+    if (!session) {
+      return res.status(404).json({ error: 'Session not found' });
+    }
+
+    // Get all attendance records with student details
+    const records = await db.all(`
+      SELECT 
+        u.name as student_name,
+        u.email as student_email,
+        a.status,
+        a.marked_at,
+        s.created_at as session_date
+      FROM attendance a
+      JOIN users u ON a.student_id = u.id
+      JOIN sessions s ON a.session_id = s.id
+      WHERE a.session_id = ?
+      ORDER BY u.name
+    `, [id]);
+
+    // Parse metadata for session details
+    const metadata = session.metadata ? JSON.parse(session.metadata) : {};
+    
+    // Create CSV content
+    let csv = 'Student Name,Email,Status,Marked At,Session Date,Year,Branch,Division\n';
+    
+    records.forEach(record => {
+      csv += `"${record.student_name}","${record.student_email}","${record.status}","${record.marked_at || 'N/A'}","${record.session_date}","${metadata.year || ''}","${metadata.branch || ''}","${metadata.division || ''}"\n`;
+    });
+
+    // Set headers for file download
+    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader('Content-Disposition', `attachment; filename="attendance_session_${id}_${new Date().toISOString().split('T')[0]}.csv"`);
+    res.send(csv);
+
+  } catch (error) {
+    console.error('Export attendance error:', error);
+    res.status(500).json({ error: 'Failed to export attendance' });
+  }
+});

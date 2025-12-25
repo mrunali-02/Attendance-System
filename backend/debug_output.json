@@ -1,0 +1,142 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Admin User",
+      "role": "admin",
+      "email": "admin@college.edu"
+    },
+    {
+      "id": 10,
+      "name": "Neeta Moharkar",
+      "role": "teacher",
+      "email": "nm@college"
+    },
+    {
+      "id": 11,
+      "name": "Mrunali Sonje",
+      "role": "student",
+      "email": "ms@student"
+    },
+    {
+      "id": 12,
+      "name": "Test Prof",
+      "role": "teacher",
+      "email": "test_prof_1766655805076@test.com"
+    },
+    {
+      "id": 13,
+      "name": "Valid Student",
+      "role": "student",
+      "email": "valid_student_1766655805085@test.com"
+    },
+    {
+      "id": 14,
+      "name": "Invalid Student",
+      "role": "student",
+      "email": "invalid_student_1766655805091@test.com"
+    },
+    {
+      "id": 15,
+      "name": "Siddhesh Sonje",
+      "role": "student",
+      "email": "ss@student"
+    },
+    {
+      "id": 16,
+      "name": "Test Teacher",
+      "role": "teacher",
+      "email": "test.teacher@college.edu"
+    },
+    {
+      "id": 17,
+      "name": "Valid CSE Student",
+      "role": "student",
+      "email": "test.student.valid@college.edu"
+    },
+    {
+      "id": 18,
+      "name": "Invalid IT Student",
+      "role": "student",
+      "email": "test.student.invalid@college.edu"
+    },
+    {
+      "id": 19,
+      "name": "John Doe",
+      "role": "teacher",
+      "email": "jd@college"
+    },
+    {
+      "id": 20,
+      "name": "Jane Doe",
+      "role": "student",
+      "email": "jd@student"
+    },
+    {
+      "id": 21,
+      "name": "Yashashree  Naik",
+      "role": "student",
+      "email": "yn@student"
+    },
+    {
+      "id": 22,
+      "name": "Nisha Jamkar",
+      "role": "teacher",
+      "email": "nj@college"
+    },
+    {
+      "id": 23,
+      "name": "Will Byers",
+      "role": "student",
+      "email": "wb@student"
+    },
+    {
+      "id": 24,
+      "name": "Steve Harrington",
+      "role": "student",
+      "email": "sh@student"
+    }
+  ],
+  "sessions": [
+    {
+      "id": 9,
+      "teacher_id": 22,
+      "status": "CLOSED",
+      "active": 0,
+      "created_at": "2025-12-25T11:01:00.000Z",
+      "metadata": "{\"totalStudents\":68,\"division\":\"B\",\"year\":\"TE\",\"branch\":\"Information Technology\",\"block\":\"IT-304\"}"
+    },
+    {
+      "id": 8,
+      "teacher_id": 24,
+      "status": "CLOSED",
+      "active": 0,
+      "created_at": "2025-12-25T10:48:52.000Z",
+      "metadata": "{\"totalStudents\":68,\"division\":\"B\",\"year\":\"TE\",\"branch\":\"Information Technology\",\"block\":\"IT-304\"}"
+    },
+    {
+      "id": 7,
+      "teacher_id": 21,
+      "status": "CLOSED",
+      "active": 0,
+      "created_at": "2025-12-25T10:42:50.000Z",
+      "metadata": "{\"totalStudents\":68,\"division\":\"B\",\"year\":\"TE\",\"branch\":\"Information Technology\",\"block\":\"C-803\"}"
+    },
+    {
+      "id": 6,
+      "teacher_id": 21,
+      "status": "CLOSED",
+      "active": 0,
+      "created_at": "2025-12-25T10:33:21.000Z",
+      "metadata": "{\"totalStudents\":\"75\",\"division\":\"B\",\"year\":\"TE\",\"branch\":\"Information Technology\",\"block\":\"C-801\"}"
+    },
+    {
+      "id": 5,
+      "teacher_id": 21,
+      "status": "CLOSED",
+      "active": 0,
+      "created_at": "2025-12-25T10:29:59.000Z",
+      "metadata": "{\"totalStudents\":\"75\",\"division\":\"B\",\"year\":\"TE\",\"branch\":\"IT\",\"block\":\"C-801\"}"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+// Add this route to sessionRoute.js
+
+// Get active session for a teacher (for session recovery)
+router.get('/active/:teacherId', async (req, res) => {
+  const { teacherId } = req.params;
+  const db = await initDB();
+
+  try {
+    const session = await db.get(
+      "SELECT * FROM sessions WHERE teacher_id = ? AND status = 'ACTIVE' ORDER BY created_at DESC LIMIT 1",
+      [teacherId]
+    );
+
+    if (!session) {
+      return res.status(404).json({ error: 'No active session found' });
+    }
+
+    res.json({ session });
+
+  } catch (error) {
+    console.error('Get active session error:', error);
+    res.status(500).json({ error: 'Failed to get active session' });
+  }
+});
